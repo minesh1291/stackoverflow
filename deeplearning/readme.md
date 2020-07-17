@@ -18,5 +18,5 @@ tf.compat.v1.keras.backend.set_session(
 - keras.utils.plot_model, dependancies
 ```bash
 sudo apt install graphviz
-pip install pydot graphviz
+pip install pydot graphviz pydotplus
 ```
