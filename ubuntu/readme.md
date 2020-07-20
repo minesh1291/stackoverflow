@@ -5,4 +5,11 @@ vncserver -localhost no -geometry 1900x1100 -depth 16
 
 # download from site path 
 wget -xr -np <site path>
+
+# restart pulseaudio and alsa 
+pulseaudio -k
+sudo alsa force-reload
+pulseaudio --start
+
+
 ```
