@@ -32,3 +32,41 @@ for blob in blobs:
     filename = blob.name.replace('/', '_') 
     blob.download_to_filename(dl_dir + filename)  # Download
 ```
+
+- Alternative: multiple-file-download-form-google-cloud-storage
+```python
+import logging
+import os
+from google.cloud import storage
+
+global table_id
+global bucket_name
+
+logging.basicConfig(format=’%(levelname)s:%(message)s’, level=logging.DEBUG) 
+bucket_name = ‘mybucket’
+table_id = ‘shakespeare’
+storage_client = storage.Client.from_service_account_json(‘/google-cloud/keyfile/service_account.json’)
+
+# The “folder” where the files you want to download are
+folder=’/google-cloud/download/{}’.format(table_id)
+delimiter=’/’
+bucket=storage_client.get_bucket(bucket_name)
+blobs=bucket.list_blobs(prefix=table_id, delimiter=delimiter) #List all objects that satisfy the filter.
+
+# Download the file to a destination 
+def download_to_local():
+    logging.info(‘File download Started…. Wait for the job to complete.’)
+    # Create this folder locally if not exists
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+    # Iterating through for loop one by one using API call
+    for blob in blobs:
+        logging.info(‘Blobs: {}’.format(blob.name))
+        destination_uri = ‘{}/{}’.format(folder, blob.name) 
+        blob.download_to_filename(destination_uri)
+        logging.info(‘Exported {} to {}’.format(
+            blob.name, destination_uri))
+
+if __name__ == ‘__main__’:
+    download_to_local()
+```
