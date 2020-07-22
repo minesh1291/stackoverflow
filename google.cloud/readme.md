@@ -16,3 +16,19 @@ def upload_local_directory_to_gcs(local_path, bucket, gcs_path):
 
 upload_local_directory_to_gcs(local_path, bucket, BUCKET_FOLDER_DIR)
 ```
+
+-  List all the files in a directory and then download them one by one
+```
+from google.cloud import storage
+
+bucket_name = 'your-bucket-name'
+prefix = 'your-bucket-directory/'
+dl_dir = 'your-local-directory/'
+
+storage_client = storage.Client()
+bucket = storage_client.get_bucket(bucket_name=bucket_name)
+blobs = bucket.list_blobs(prefix=prefix)  # Get list of files
+for blob in blobs:
+    filename = blob.name.replace('/', '_') 
+    blob.download_to_filename(dl_dir + filename)  # Download
+```
