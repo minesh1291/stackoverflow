@@ -1,5 +1,5 @@
 - Copy all content from a local directory to a specific bucket-name/full-path (recursive) in google cloud storage:
-```
+```python
 import glob
 from google.cloud import storage
 
@@ -18,7 +18,7 @@ upload_local_directory_to_gcs(local_path, bucket, BUCKET_FOLDER_DIR)
 ```
 
 -  List all the files in a directory and then download them one by one
-```
+```python
 from google.cloud import storage
 
 bucket_name = 'your-bucket-name'
