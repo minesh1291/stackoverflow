@@ -37,6 +37,22 @@ vncserver -localhost no -geometry 1900x1100 -depth 16
 ```bash
 wget -xr -np <site path>
 ```
+
+- Download Manager
+```bash
+# Xtreme Download Manager (XDM)
+sudo add-apt-repository ppa:noobslab/apps
+sudo apt-get update
+sudo apt-get install xdman
+
+# uGet
+sudo add-apt-repository ppa:plushuang-tw/uget-stable
+sudo apt-get update
+sudo apt-get install uget
+
+# MultiGet
+sudo apt-get install multiget
+```
   
 - Restart pulseaudio and alsa
 ```bash
