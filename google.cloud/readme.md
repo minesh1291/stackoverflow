@@ -1,3 +1,27 @@
+- Using Cloud9 IDE with VM Virtual Machine / GCE Google Compute Engine
+  1. create-start-instance on GCE [as given here](https://cloud.google.com/compute/docs/instances/create-start-instance)
+  2. enable the traffic in the port 8080 [as given here](https://cloud.google.com/vpc/docs/using-firewalls?hl=pt-br)
+```bash
+# install Cloud9 requirements
+sudo apt-get install build-essential git
+curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash
+
+# install and setup nvm and after that install nodejs
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+source ~/.bashrc
+nvm install --latest-npm
+
+# install the Cloud9 itself
+cd ~
+git clone https://github.com/c9/core.git c9sdk
+cd c9sdk
+scripts/install-sdk.sh
+
+# run the server of the cloud9, we are going to host the server in the port 8080
+mkdir ~/workspace
+screen node ~/c9sdk/server.js -p 8080 -w ~/workspace -a : --listen 0.0.0.0 --collab true
+```
+
 - Copy all content from a local directory to a specific bucket-name/full-path (recursive) in google cloud storage:
 ```python
 import glob
