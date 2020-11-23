@@ -20,3 +20,13 @@ tf.compat.v1.keras.backend.set_session(
 sudo apt install graphviz
 pip install pydot graphviz pydotplus
 ```
+
+- Configure tensorflow keras log level
+```python
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = "2"
+import tensorflow as tf
+import numpy as np
+a = tf.Variable(np.array([0, 1, 2]))
+print(a)
+```
