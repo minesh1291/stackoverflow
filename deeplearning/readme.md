@@ -15,6 +15,17 @@ tf.compat.v1.keras.backend.set_session(
 
 ```
 
+- Force GPU usage with context
+```python
+# list physical devices
+gpus = tf.config.experimental.list_physical_devices('GPU')
+# log device placement
+tf.debugging.set_log_device_placement(True)
+
+with tf.device('/device:GPU:0'):
+    model = get_model()
+```
+
 - keras.utils.plot_model, dependancies
 ```bash
 sudo apt install graphviz
