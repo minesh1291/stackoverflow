@@ -30,3 +30,40 @@ def calculate_kn_distance(X, k):
 
     return kn_distance
 
+
+def transfrom_all_data(transformer, train, test, feature_list):
+    """
+    Apply transformer to train and test features
+    """
+    train_trans = transformer.fit_transform(train[feature_list])
+    test_trans = transformer.transform(test[feature_list])
+    
+    if type(train_trans) != np.ndarray:
+        train_trans = np.array(train_trans)
+        test_trans = np.array(test_trans)
+    
+    return train_trans, test_trans
+
+
+def make_features(transformer, train, test, feature_list, name, normalize=False, scaler=None):
+    """
+    Add newly generated transformed features to train and test dataframe
+    
+    Usage:
+        scaler = StandardScaler()
+        logTrans = FunctionTransformer(np.log1p)
+        train_X, val_X = make_features(qTrans, train_X, val_X, feature_list=range(10), name="qTrans", normalize=False, scaler=scaler)
+    """
+    train, test = train.copy(), test.copy()
+    train_trans, test_trans = transfrom_all_data(transformer, train, test, feature_list)
+    
+    if normalize and scaler is not None:
+        train_trans = scaler.fit_transform(train_trans).astype(np.float32)
+        test_trans = scaler.transform(test_trans).astype(np.float32)
+    
+    for i in range(train_trans.shape[1]):
+        train['{0}_{1}'.format(name, i)] = train_trans[:, i]
+        test['{0}_{1}'.format(name, i)] = test_trans[:, i]
+        
+    return train, test
+
