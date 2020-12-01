@@ -58,7 +58,7 @@ def calculate_kn_distance(X, neigh=2):
     neigh = NearestNeighbors(n_neighbors=neigh)
     nbrs = neigh.fit(X)
     distances, indices = nbrs.kneighbors(X)
-    return distances[:,1:].reshape(-1,1)
+    return distances[:,1:].reshape(-1)
 
 
 def get_eps(X, neigh=2):
@@ -69,7 +69,7 @@ def get_eps(X, neigh=2):
     plt.show()
     
     rotor = Rotor()
-    curve_xy = np.concatenate([np.arange(eps_dist.shape[0]).reshape(-1, 1), eps_dist],1)
+    curve_xy = np.concatenate([np.arange(eps_dist.shape[0]).reshape(-1, 1), eps_dist.reshape(-1, 1)],1)
     rotor.fit_rotate(curve_xy)
     rotor.plot_elbow()
     e_idx = rotor.get_elbow_index()
