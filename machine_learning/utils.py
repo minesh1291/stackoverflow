@@ -91,7 +91,7 @@ def calc_optimal_components(X, var_thr=0.95):
     var_thr = 0.95
     n_comp = np.where(var_ratio_cum>=var_thr)[0][0]
 
-    plt.plot(range(100), var_ratio_cum, "o-")
+    plt.plot(range(min(X.shape)), var_ratio_cum, "o-")
     plt.vlines([n_comp], ymin=var_ratio_cum[0], ymax=var_ratio_cum[n_comp], linestyles="--", color="red", alpha=0.5)
     plt.plot([n_comp], var_ratio_cum[n_comp], marker="x", markersize=12)
     
