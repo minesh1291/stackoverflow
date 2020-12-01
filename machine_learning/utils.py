@@ -88,7 +88,6 @@ def calc_optimal_components(X, var_thr=0.95):
     pca.fit(X)
 
     var_ratio_cum = pca.explained_variance_ratio_.cumsum()
-    var_thr = 0.95
     n_comp = np.where(var_ratio_cum>=var_thr)[0][0]
 
     plt.plot(range(min(X.shape)), var_ratio_cum, "o-")
