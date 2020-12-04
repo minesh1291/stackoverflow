@@ -41,3 +41,12 @@ import numpy as np
 a = tf.Variable(np.array([0, 1, 2]))
 print(a)
 ```
+
+- Ways to Regularize Network 
+  1. L1, L2 Weight Regularization
+  2. Batch Normalization
+  3. Dropout
+  4. Using larger batches
+  5. Label Smoothing
+ 
+
