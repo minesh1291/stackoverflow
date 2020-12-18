@@ -32,6 +32,26 @@ sudo apt install graphviz
 pip install pydot graphviz pydotplus
 ```
 
+- Plot Learning Curve
+```python
+def plot_lcurve(model, metrics=["loss"], name="default.jpg"):
+
+    fig, ax = plt.subplots(len(metrics),1, figsize=(8, 6))
+    if len(metrics)==1:
+        ax=[ax]
+    for metric, axi in zip(metrics, ax):
+        axi.set_title(metric)
+        axi.plot(model.history.history[metric], ".--", label="tr")
+        axi.plot(model.history.history[f'val_{metric}'], ".--", label="val")
+        axi.legend()
+    plt.tight_layout()
+    plt.savefig(name)
+    plt.show()
+
+plot_lcurve(model)
+```
+
+
 - Configure tensorflow keras log level
 ```python
 import os
