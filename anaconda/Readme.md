@@ -11,6 +11,15 @@ conda env create user/my-environment
 source activate my-environment
 ```
 
+- Install Dependancies and Ipython Kernel
+```
+which pip3
+pip3 install -r requirements.txt
+
+which python3
+python3 -m ipykernel install --user --name my-environment --display-name "py3.8 myenv"
+```
+
 - Upgrade python packages/libraries and launch Jupyter server
 ```bash
 # Upgrade All Packages
