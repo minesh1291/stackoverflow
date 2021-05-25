@@ -38,3 +38,19 @@ def hello_logger():
 if __name__ == "__main__":
     print(hello_logger())
 ```
+
+- Check if python object is unPickleable
+```py
+import pickle
+def pickleable(obj):
+    try:
+        pickle.dumps(obj)
+    except pickle.PicklingError:
+        return False
+    return True
+
+# Test
+import os
+print(pickleable(42))  # True
+print(pickleable(os))  # False
+```
