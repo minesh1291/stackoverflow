@@ -53,7 +53,14 @@ sudo apt-get install uget
 # MultiGet
 sudo apt-get install multiget
 ```
-  
+
+- Linux/Ubuntu difference between Stop Process, Kill Process and End Process?
+```
+- Stop Process = SIGSTOP (pause signal, let's you continue later with SIGCONT, does not kill process)
+- End Process = SIGTERM (termination signal, the right way, the application can intercept this signal and intiate shutdown tasks such as temp file cleanup)
+- Kill Process = SIGKILL (kill signal, extreme, only use if SIGTERM doesn't work, won't intiate shutdown tasks)
+```
+
 - Restart pulseaudio and alsa
 ```bash
 pulseaudio -k
