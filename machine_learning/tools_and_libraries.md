@@ -39,4 +39,8 @@
   - Repo: https://github.com/RaRe-Technologies/gensim
   - Docs: https://radimrehurek.com/gensim/apiref.html#api-reference
 
-- 
+## Time Series Modeling and Analysis
+
+- Kats
+  - Repo: https://github.com/facebookresearch/kats
+  - Docs: https://facebookresearch.github.io/Kats/api/
